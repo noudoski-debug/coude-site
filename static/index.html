@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Coude</title>
+<style>
+:root{--bg:#0b0b0b;--s:#121212;--s2:#1a1a1a;--b:#262626;--t:#e8e8e6;--m:#8f8f88;--a:#f2c230;--c:#f2c230;--ok:#7bd88f;--er:#ff6b6b;--r:10px;--serif:Georgia,"Times New Roman",serif}
+*{box-sizing:border-box;margin:0}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--t);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh}
+button,input,select,textarea{font:inherit;color:inherit}:focus-visible{outline:2px solid var(--a);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+nav{position:sticky;top:0;z-index:20;background:#0b0b0bf5;border-bottom:1px solid var(--b)}
+nav .wrap{display:flex;align-items:center;gap:4px;min-height:60px}
+.logo{display:flex;align-items:center;gap:10px;font:700 21px var(--serif);margin-right:auto;text-decoration:none;letter-spacing:.01em}
+.logo i{width:12px;height:12px;background:var(--a);border-radius:3px}
+.tab,.btn{min-height:44px;padding:0 16px;border-radius:var(--r);border:1px solid transparent;background:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;transition:.15s}
+.tab{color:var(--m);font-size:15px}.tab:hover,.tab.on{color:var(--t);background:var(--s2)}
+.btn{background:var(--a);color:#111;font-weight:600}.btn:hover{filter:brightness(1.08)}
+.btn.g{background:var(--s);border-color:var(--b);color:var(--t);font-weight:500}.btn.g:hover{border-color:var(--a)}
+.btn.sm{padding:0 14px;font-size:14px}.btn:disabled{opacity:.4;cursor:not-allowed}
+.hero{padding:96px 0 40px;text-align:center}
+.hero h1{font:400 clamp(40px,8vw,72px)/1.05 var(--serif);letter-spacing:-.02em}.hero h1 span{color:var(--a);font-style:italic}
+.hero p{color:var(--m);max-width:520px;margin:20px auto 30px;font-size:18px}
+.card{background:var(--s);border:1px solid var(--b);border-radius:var(--r);padding:20px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.ft h3{font:400 20px var(--serif);margin-bottom:6px}.ft p{color:var(--m);font-size:15px}
+h2{font:400 28px var(--serif);margin:36px 0 16px}h3{font-weight:600}
+.price{font:400 36px var(--serif);margin:8px 0}.price small{font:14px system-ui;color:var(--m)}
+.plan.pop{border-color:var(--a)}ul.f{list-style:none;padding:0;margin:14px 0 20px;color:var(--m)}ul.f li{padding:4px 0}
+input,select,textarea{width:100%;min-height:46px;padding:10px 14px;border-radius:var(--r);border:1px solid var(--b);background:var(--s2);margin:6px 0 12px}
+textarea{resize:vertical}input::placeholder,textarea::placeholder{color:#6d6d67}label{font-size:14px;color:var(--m)}
+.app{display:grid;grid-template-columns:260px 1fr;height:calc(100vh - 60px);min-height:480px;border-left:1px solid var(--b);border-right:1px solid var(--b)}
+.side{display:flex;flex-direction:column;gap:10px;padding:14px;background:var(--s);border-right:1px solid var(--b);min-height:0}
+.lbl{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--m);padding:6px 4px 0}
+.cl{flex:1;overflow:auto;display:flex;flex-direction:column;gap:2px}
+.ci{display:flex;border-radius:8px}.ci.on{background:var(--s2);box-shadow:inset 2px 0 var(--a)}
+.ci button{background:none;border:0;cursor:pointer;min-height:44px;text-align:left;padding:0 12px;border-radius:8px;font-size:15px}
+.ci button:first-child{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ci button:hover{color:var(--a)}
+.pane{display:flex;flex-direction:column;min-height:0;padding:0 16px 14px}
+.msgs{flex:1;overflow:auto;display:flex;flex-direction:column;gap:22px;padding:24px 0;width:100%;max-width:760px;margin:0 auto}
+.m{word-wrap:break-word}.m .ans{white-space:pre-wrap}
+.m.u{align-self:flex-end;max-width:85%;background:var(--s2);border:1px solid var(--b);border-radius:14px 14px 4px 14px;padding:10px 16px;white-space:pre-wrap}
+.m.a{align-self:stretch;padding-left:14px;border-left:2px solid var(--a)}
+details.th{margin-bottom:10px;color:var(--m);font-size:14px}
+details.th summary{cursor:pointer;min-height:32px;display:flex;align-items:center;color:var(--a);font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+details.th div{white-space:pre-wrap;padding:6px 0 6px 12px;border-left:1px solid var(--b)}
+.empty{margin:auto;text-align:center}.empty h1{font:400 clamp(30px,6vw,44px) var(--serif);letter-spacing:-.01em}
+.empty p{color:var(--m);margin:6px 0 22px}.chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.chips button{min-height:44px;padding:0 16px;border-radius:99px;border:1px solid var(--b);background:var(--s);cursor:pointer;font-size:14px}.chips button:hover{border-color:var(--a);color:var(--a)}
+.comp{width:100%;max-width:760px;margin:0 auto;background:var(--s);border:1px solid var(--b);border-radius:16px;padding:10px 12px 8px}
+.comp:focus-within{border-color:#4a4a30}
+.comp textarea{border:0;background:none;margin:0;padding:6px 4px;min-height:44px;max-height:180px;resize:none;display:block}.comp textarea:focus-visible{outline:0}
+.ctl{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.ctl select{width:auto;min-height:44px;margin:0;flex:1;min-width:110px;padding:0 10px;font-size:14px;background:var(--s2)}
+.sw{display:flex;align-items:center;gap:8px;min-height:44px;cursor:pointer;color:var(--m);font-size:14px;padding:0 6px}
+.sw input{width:18px;height:18px;min-height:0;margin:0;accent-color:var(--a)}
+.send{width:44px;padding:0;margin-left:auto;border-radius:12px}.send svg{width:20px;height:20px}
+.menu{display:none;margin:10px 0 0;align-self:flex-start}
+.pill{padding:3px 12px;border-radius:99px;background:var(--s2);border:1px solid var(--b);font-size:13px;color:var(--m);white-space:nowrap;align-self:flex-start}
+.err{color:var(--er);min-height:22px;font-size:14px;padding:4px 0;max-width:760px;width:100%;margin:0 auto}.okc{color:var(--ok)}
+table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:10px 8px;border-bottom:1px solid var(--b);text-align:left}
+.sc{overflow-x:auto}.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1;min-width:120px}
+.stat{font:400 34px var(--serif);color:var(--a)}
+dialog{border:1px solid var(--b);border-radius:14px;background:var(--s);color:var(--t);padding:26px;width:min(400px,92vw)}
+dialog::backdrop{background:#000c}
+.dots span{display:inline-block;width:6px;height:6px;margin:0 2px;border-radius:50%;background:var(--a);animation:d 1s infinite}
+.dots span:nth-child(2){animation-delay:.15s}.dots span:nth-child(3){animation-delay:.3s}
+@keyframes d{50%{opacity:.2;transform:translateY(-3px)}}
+@media(max-width:760px){.app{grid-template-columns:1fr;height:calc(100vh - 60px);border:0}.menu{display:inline-flex}
+.side{position:fixed;top:60px;bottom:0;left:0;width:84%;max-width:320px;z-index:15;transform:translateX(-105%);transition:.25s}
+.side.open{transform:none}.m.u{max-width:94%}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.hide{display:none!important}
+</style></head><body>
+<nav><div class="wrap">
+<a class="logo" href="#"><i></i>Coude</a>
+<a class="tab" href="#app" id="tChat">Чат</a><a class="tab" href="#plans">Тарифы</a>
+<a class="tab hide" href="#admin" id="tAdmin">Админка</a>
+<button class="btn sm" id="bAuth">Войти</button>
+</div></nav>
+
+<main class="wrap">
+<section id="v-home"><div class="hero"><h1>ИИ от <span>Coude</span></h1>
+<p>Mable 2 подстраивается под твой стиль, умеет думать вслух и работает в отдельных чатах. Начни бесплатно.</p>
+<a class="btn" href="#app">Открыть чат</a></div>
+<div class="grid"><div class="card ft"><h3>Чаты</h3><p>Отдельные диалоги, история хранится в твоём браузере.</p></div>
+<div class="card ft"><h3>Размышления</h3><p>Включи «Думанье» и смотри, как модель рассуждает.</p></div>
+<div class="card ft"><h3>Усилия</h3><p>Низкие для быстрого ответа, высокие для подробного.</p></div></div></section>
+
+<section id="v-app" class="hide"><div class="app">
+<aside class="side" id="side"><button class="btn" id="cnew">+ Новый чат</button><div class="lbl">Чаты</div><div class="cl" id="clist"></div><div class="pill" id="quota"></div></aside>
+<div class="pane"><button class="btn g menu" id="cmenu">Чаты</button>
+<div class="msgs" id="msgs" aria-live="polite"></div><div class="err" id="cerr"></div>
+<form class="comp" id="cform"><textarea id="cin" rows="1" maxlength="700" placeholder="Чем помочь?" aria-label="Сообщение"></textarea>
+<div class="ctl"><select id="cm" aria-label="Модель"></select>
+<select id="ce" aria-label="Уровень усилий"><option value="low">Усилия: низкие</option><option value="medium">Усилия: средние</option><option value="high">Усилия: высокие</option></select>
+<label class="sw"><input type="checkbox" id="ct">Думанье</label>
+<button class="btn send" id="csend" aria-label="Отправить"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button></div></form>
+</div></div></section>
+
+<section id="v-plans" class="hide"><h2>Тарифы</h2><div class="grid" id="plans"></div><div class="err" id="perr"></div></section>
+
+<section id="v-admin" class="hide"><h2>Админка</h2>
+<div class="card"><h3>Подключение к ИИ (телефон)</h3><br>
+<label for="aurl">Адрес API (https, например от localhost.run)</label>
+<input id="aurl" placeholder="https://xxxx.lhr.life" inputmode="url">
+<label for="amod">Модели (id|Название, по строке; id как в MODELS на телефоне)</label><textarea id="amod" rows="3"></textarea>
+<label for="asec">Секрет API (пусто = не менять)</label>
+<input id="asec" type="password" autocomplete="off" placeholder="API_SECRET с телефона">
+<label><input type="checkbox" id="aen" style="width:auto;min-height:0;margin-right:8px">ИИ включён</label><br><br>
+<div class="row"><button class="btn" id="asave">Сохранить</button><button class="btn g" id="atest">Проверить связь</button></div>
+<div class="err" id="amsg"></div></div>
+
+<h2>Статистика</h2><div class="grid"><div class="card"><div class="stat" id="srev">0</div>выручка (посл. платежи), ₽</div>
+<div class="card"><div class="stat" id="susr">0</div>пользователей в списке</div></div>
+
+<h2>Тарифы</h2><div class="card sc"><table id="ptab"></table><br><button class="btn" id="psave">Сохранить тарифы</button></div>
+<h2>Пользователь</h2><div class="card"><label for="ue">Email</label><input id="ue" type="email">
+<div class="row"><select id="up" aria-label="Тариф"></select><input id="ud" type="number" value="30" min="1" aria-label="Дней"></div>
+<div class="row"><button class="btn" id="ugr">Выдать подписку</button><button class="btn g" id="ubn">Бан / разбан</button></div></div>
+<h2>Пользователи</h2><div class="card sc"><table id="utab"></table></div>
+<h2>Платежи</h2><div class="card sc"><table id="paytab"></table></div></section>
+</main>
+
+<dialog id="dlg"><form method="dialog" id="aform"><h3 id="dt">Вход</h3><br>
+<label for="em">Email</label><input id="em" type="email" required autocomplete="email">
+<label for="pw">Пароль (от 8 символов)</label><input id="pw" type="password" required minlength="8" autocomplete="current-password">
+<div class="err" id="derr"></div>
+<div class="row"><button class="btn" id="dgo" value="x">Войти</button><button class="btn g" type="button" id="dsw">Регистрация</button></div>
+<button class="btn g" type="button" id="dcl" style="width:100%;margin-top:10px">Закрыть</button></form></dialog>
+
+<script>
+const $=id=>document.getElementById(id);let ME=null,PL={},HIST=[],reg=false;
+async function api(p,m="GET",b){const r=await fetch("/api/"+p,{method:m,headers:{"Content-Type":"application/json"},body:b?JSON.stringify(b):undefined});
+ let j={};try{j=await r.json()}catch(e){}if(!r.ok)throw new Error(j.detail||"Ошибка "+r.status);return j}
+const T=(el,t)=>{el.textContent=t};
+function route(){const h=(location.hash||"#").slice(1)||"home";
+ for(const v of["home","app","plans","admin"])$("v-"+v).classList.toggle("hide",v!==h);
+ document.querySelectorAll(".tab").forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+h));
+ $("side").classList.remove("open");if(h==="app"&&!ME)openAuth();if(h==="admin"){ME&&ME.admin?loadAdmin():location.hash="#"}}
+addEventListener("hashchange",route);
+async function load(){try{ME=await api("me")}catch(e){ME=null}
+ PL=await api("plans");MD=await api("models");T($("bAuth"),ME?"Выйти":"Войти");$("tAdmin").classList.toggle("hide",!(ME&&ME.admin));
+ if(ME){T($("quota"),`${ME.plan.toUpperCase()}: ${ME.used}/${ME.limit}`);loadC()}
+ drawCfg();drawPlans();route()}
+function drawPlans(){const g=$("plans");g.innerHTML="";
+ Object.entries(PL).forEach(([k,p])=>{const c=document.createElement("div");c.className="card plan"+(k==="pro"?" pop":"");
+  const h=document.createElement("h3");T(h,p.name);const pr=document.createElement("div");pr.className="price";
+  pr.textContent=p.price?p.price+" ₽":"0 ₽";const s=document.createElement("small");T(s,p.days?" / "+p.days+" дн.":" навсегда");pr.append(s);
+  const u=document.createElement("ul");u.className="f";[`${p.daily} сообщений в день`,"Все возможности чата"].forEach(x=>{const l=document.createElement("li");T(l,"✓ "+x);u.append(l)});
+  const b=document.createElement("button");b.className="btn";b.style.width="100%";
+  if(!p.price){T(b,ME&&ME.plan==="free"?"Ваш тариф":"Бесплатно");b.disabled=true;b.classList.add("g")}
+  else{T(b,"Купить");b.onclick=()=>buy(k,b)}c.append(h,pr,u,b);g.append(c)})}
+async function buy(k,b){if(!ME)return openAuth();T($("perr"),"");b.disabled=true;
+ try{const r=await api("pay","POST",{plan:k});location.href=r.url}catch(e){T($("perr"),e.message);b.disabled=false}}
+function openAuth(){T($("derr"),"");$("dlg").showModal()}
+$("bAuth").onclick=async()=>{if(ME){await api("logout","POST");ME=null;HIST=[];$("msgs").innerHTML="";load();location.hash="#"}else openAuth()};
+$("dcl").onclick=()=>$("dlg").close();
+$("dsw").onclick=()=>{reg=!reg;T($("dt"),reg?"Регистрация":"Вход");T($("dgo"),reg?"Создать":"Войти");T($("dsw"),reg?"Вход":"Регистрация")};
+$("aform").onsubmit=async e=>{e.preventDefault();try{await api(reg?"register":"login","POST",{email:$("em").value,password:$("pw").value});$("dlg").close();await load();location.hash="#app"}catch(x){T($("derr"),x.message)}};
+let CH=[],CUR=null,MD=[],CFG=JSON.parse(localStorage.getItem("mcfg")||'{"model":"","effort":"medium","think":false}');
+const key=()=>"mc_"+(ME?ME.email:""),cur=()=>CH.find(c=>c.id===CUR);
+function saveC(){try{localStorage.setItem(key(),JSON.stringify(CH));localStorage.setItem("mcfg",JSON.stringify(CFG))}catch(e){}}
+function loadC(){try{CH=JSON.parse(localStorage.getItem(key())||"[]")}catch(e){CH=[]}CH.length?CUR=CH[0].id:newChat();drawChats();drawMsgs()}
+function newChat(){const c={id:Date.now().toString(36),title:"Новый чат",msgs:[]};CH.unshift(c);CUR=c.id;saveC();drawChats();drawMsgs()}
+function drawChats(){const l=$("clist");l.innerHTML="";CH.forEach(c=>{const r=document.createElement("div");r.className="ci"+(c.id===CUR?" on":"");
+ const b=document.createElement("button");b.textContent=c.title;b.onclick=()=>{CUR=c.id;drawChats();drawMsgs();$("side").classList.remove("open")};
+ const x=document.createElement("button");x.textContent="×";x.setAttribute("aria-label","Удалить чат");
+ x.onclick=()=>{CH=CH.filter(k=>k!==c);if(!CH.length)return newChat();if(CUR===c.id)CUR=CH[0].id;saveC();drawChats();drawMsgs()};r.append(b,x);l.append(r)})}
+function drawCfg(){const m=$("cm");m.innerHTML="";MD.forEach(x=>m.add(new Option(x.name,x.id)));if(!MD.some(x=>x.id===CFG.model))CFG.model=MD[0]?MD[0].id:"";
+ m.value=CFG.model;$("ce").value=CFG.effort;$("ct").checked=CFG.think}
+$("cm").onchange=()=>{CFG.model=$("cm").value;saveC()};$("ce").onchange=()=>{CFG.effort=$("ce").value;saveC()};$("ct").onchange=()=>{CFG.think=$("ct").checked;saveC()};
+$("cnew").onclick=()=>{newChat();$("side").classList.remove("open")};$("cmenu").onclick=()=>$("side").classList.toggle("open");
+function bubble(r,t,th){const d=document.createElement("div");d.className="m "+(r==="u"?"u":"a");
+ if(r==="a"){const dt=document.createElement("details");dt.className="th"+(th?"":" hide");const sm=document.createElement("summary");sm.textContent="Размышления";const p=document.createElement("div");p.textContent=th||"";dt.append(sm,p);d.append(dt);
+  const a=document.createElement("div");a.className="ans";a.textContent=t;d.append(a)}else d.textContent=t;
+ $("msgs").append(d);$("msgs").scrollTop=1e9;return d}
+function drawMsgs(){const m=$("msgs");m.innerHTML="";const c=cur();
+ if(!c||!c.msgs.length){const e=document.createElement("div");e.className="empty";const h=new Date().getHours(),g=h<5?"Доброй ночи":h<12?"Доброе утро":h<18?"Добрый день":"Добрый вечер";
+  const t=document.createElement("h1");t.textContent=g+(ME?", "+ME.email.split("@")[0]:"");const p=document.createElement("p");p.textContent="Чем помочь сегодня?";e.append(t,p);
+  const ch=document.createElement("div");ch.className="chips";["Объясни простыми словами","Напиши лёгкий сайт","Помоги составить текст"].forEach(x=>{const b=document.createElement("button");b.type="button";b.textContent=x;b.onclick=()=>{$("cin").value=x+": ";$("cin").focus()};ch.append(b)});
+  e.append(ch);m.append(e);return}
+ c.msgs.forEach(x=>bubble(x.r,x.t,x.th))}
+$("cin").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();$("cform").requestSubmit()}});
+$("cin").addEventListener("input",()=>{const i=$("cin");i.style.height="auto";i.style.height=Math.min(i.scrollHeight,180)+"px"});
+function sp(t){let th="",a=t;const o=t.indexOf("<think>"),c=t.indexOf("</think>");
+ if(o>=0){const r=t.slice(o+7),k=r.indexOf("</think>");if(k>=0){th=r.slice(0,k);a=r.slice(k+8)}else{th=r;a=""}}else if(c>=0){th=t.slice(0,c);a=t.slice(c+8)}
+ return[th.trim(),a.trimStart()]}
+function setB(d,th,a,live){d.querySelector(".ans").textContent=a;const dt=d.querySelector("details");if(th){dt.classList.remove("hide");dt.querySelector("div").textContent=th;dt.open=live&&!a}$("msgs").scrollTop=1e9}
+$("cform").onsubmit=async e=>{e.preventDefault();const q=$("cin").value.trim();if(!q)return;if(!ME)return openAuth();const c=cur();
+ T($("cerr"),"");$("cin").value="";$("cin").style.height="";$("csend").disabled=true;if(!c.msgs.length)$("msgs").innerHTML="";bubble("u",q);const d=bubble("a","");
+ d.querySelector(".ans").innerHTML='<span class="dots"><span></span><span></span><span></span></span>';let txt="";
+ try{const r=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({message:q,history:c.msgs.slice(-6).map(m=>({r:m.r,t:m.t})),model:CFG.model,effort:CFG.effort,thinking:CFG.think})});
+  if(!r.ok){const j=await r.json().catch(()=>({}));throw new Error(j.detail||"Ошибка "+r.status)}
+  const rd=r.body.getReader(),dc=new TextDecoder();let buf="";
+  while(true){const{done,value}=await rd.read();if(done)break;buf+=dc.decode(value,{stream:true});
+   let i;while((i=buf.indexOf("\n\n"))>=0){const ln=buf.slice(0,i).replace(/^data: /,"");buf=buf.slice(i+2);
+    try{const o=JSON.parse(ln);if(o.t){txt+=o.t;const[th,a]=sp(txt);setB(d,th,a,true)}
+     if(o.err)throw new Error(o.err==="busy"?"ИИ занят, повтори через несколько секунд":"ИИ сейчас недоступен")}catch(x){if(x.message&&!(x instanceof SyntaxError))throw x}}}
+  const[th,a]=sp(txt);setB(d,th,a,false);if(c.title==="Новый чат")c.title=q.slice(0,28);c.msgs.push({r:"u",t:q},{r:"a",t:a||th,th:a?th:""});saveC();drawChats()}
+ catch(x){if(!txt)d.remove();T($("cerr"),x.message)}
+ $("csend").disabled=false;try{ME=await api("me");T($("quota"),`${ME.plan.toUpperCase()}: ${ME.used}/${ME.limit}`)}catch(e){}};
+function tr(t,cells,head){const r=t.insertRow();cells.forEach(c=>{const x=document.createElement(head?"th":"td");if(c instanceof Node)x.append(c);else x.textContent=c;r.append(x)})}
+async function loadAdmin(){const s=await api("admin/state");$("aurl").value=s.api_url;$("aen").checked=s.enabled;$("amod").value=s.models;$("asec").placeholder=s.has_secret?"сохранён (пусто = не менять)":"API_SECRET с телефона";
+ T($("srev"),s.revenue);T($("susr"),s.users.length);
+ const pt=$("ptab");pt.innerHTML="";tr(pt,["Тариф","Цена ₽","Дней","В день"],1);
+ Object.entries(s.plans).forEach(([k,p])=>{const f=n=>{const i=document.createElement("input");i.type="number";i.min=0;i.value=p[n];i.dataset.k=k;i.dataset.n=n;i.style.margin=0;i.setAttribute("aria-label",p.name+" "+n);return i};tr(pt,[p.name,f("price"),f("days"),f("daily")])});
+ $("up").innerHTML="";Object.entries(s.plans).filter(([k])=>k!=="free").forEach(([k,p])=>{const o=new Option(p.name,k);$("up").add(o)});
+ const ut=$("utab");ut.innerHTML="";tr(ut,["Email","Тариф","До","Бан"],1);s.users.forEach(u=>tr(ut,[u.email,u.plan,u.until?u.until.slice(0,10):"—",u.banned?"да":""]));
+ const yt=$("paytab");yt.innerHTML="";tr(yt,["ID","Юзер","Тариф","₽","Статус"],1);s.payments.forEach(p=>tr(yt,[p.id,p.uid,p.plan,p.amount,p.status]))}
+const msg=(t,ok)=>{const e=$("amsg");e.className="err"+(ok?" okc":"");T(e,t)};
+$("asave").onclick=async()=>{try{await api("admin/settings","PUT",{api_url:$("aurl").value,api_secret:$("asec").value,models:$("amod").value,enabled:$("aen").checked});$("asec").value="";msg("Сохранено",1);loadAdmin()}catch(e){msg(e.message)}};
+$("atest").onclick=async()=>{msg("Проверяю...",1);try{const r=await api("admin/test","POST");msg(r.ok?"Связь есть: "+JSON.stringify(r.info):"Нет связи: "+JSON.stringify(r.info),r.ok)}catch(e){msg(e.message)}};
+$("psave").onclick=async()=>{const o={};document.querySelectorAll("#ptab input").forEach(i=>{(o[i.dataset.k]??={})[i.dataset.n]=+i.value});try{await api("admin/plans","PUT",o);msg("Тарифы сохранены",1);PL=await api("plans");drawPlans()}catch(e){msg(e.message)}};
+$("ugr").onclick=async()=>{try{await api("admin/user","POST",{email:$("ue").value,plan:$("up").value,days:+$("ud").value});msg("Выдано",1);loadAdmin()}catch(e){msg(e.message)}};
+$("ubn").onclick=async()=>{const em=$("ue").value;const u=(await api("admin/state")).users.find(x=>x.email===em.toLowerCase());
+ try{await api("admin/user","POST",{email:em,banned:!(u&&u.banned)});msg("Готово",1);loadAdmin()}catch(e){msg(e.message)}};
+load();
+</script></body></html>
